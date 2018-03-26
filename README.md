@@ -4,6 +4,29 @@ This server dump the [symbols](https://github.com/google/breakpad/blob/master/do
 
 Just send a ziped folder with `.so` files or single `.so` file as form data.
 
+
+### Dependencies
+* [Google breakpad(`dump_syms`)](https://chromium.googlesource.com/breakpad/breakpad)
+* Python2
+
+*Note: google breakpad `dump_syms` works only on Linux*
+
+### Docker
+This repo contains docker file, so you need just run `./build_and_run_docker.sh` script which builds a container && start the container with server on **port 4000**
+
+```
+>> ./install_and_run_docker.sh
+
+Building docker...
+Sending build context to Docker daemon   2.56kB
+Step 1/9 : FROM ubuntu
+ ---> f975c5035748
+...
+Successfully built f7b3aaecb0cd
+Successfully tagged crashserver:latest
+Starting server on port 4000
+```
+
 ### Usage
 
 ```
@@ -59,8 +82,4 @@ Archive:  symbols.zip
 
 
 
-### Dependencies
-* [Google breakpad(`dump_syms`)](https://chromium.googlesource.com/breakpad/breakpad)
-* Python2
 
-*Note: google breakpad `dump_syms` works only on Linux*
