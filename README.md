@@ -15,7 +15,7 @@ Just send a ziped folder(you can include multiple ABIs - server look recurcively
 This repo contains docker file, so you need just run `./build_and_run_docker.sh` script which builds a container && start the container with server on **port 4000**
 
 ```
->> ./install_and_run_docker.sh
+>> ./build_and_run_docker.sh
 
 Building docker...
 Sending build context to Docker daemon   2.56kB
