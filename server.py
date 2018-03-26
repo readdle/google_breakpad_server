@@ -74,33 +74,34 @@ class StoreHandler(BaseHTTPRequestHandler):
             copy2(input_file, libs_dir)
 
         # Run dump_syms
-        for file in os.listdir(libs_dir):
-            if file.endswith(".so"):
-                lib_fullpath = os.path.join(libs_dir, file)
-                print "processing: ", lib_fullpath
+        for root, subdirs, files in os.walk(libs_dir):   # Recursively listdir
+            for file in files:
+                if file.endswith(".so"):
+                    lib_fullpath = os.path.join(root, file)
+                    print "processing: ", lib_fullpath
 
-                # Create symbols
-                symbol_out_file = os.path.join(symbols_out_dir, '%s.sym' % file)
-                with open(symbol_out_file, 'w') as out:
-                    subprocess.call(['dump_syms', lib_fullpath], stdout=out)
+                    # Create symbols
+                    symbol_out_file = os.path.join(symbols_out_dir, '%s.sym' % file)
+                    with open(symbol_out_file, 'w') as out:
+                        subprocess.call(['dump_syms', lib_fullpath], stdout=out)
 
-                # Create structure
-                with open(symbol_out_file, 'r') as f:
-                    first_line = f.readline().strip()
-                    line = first_line.split(' ')
-                    try:
-                        syms_path = os.path.join(symbols_out_dir, line[-1], line[3])
+                    # Create structure
+                    with open(symbol_out_file, 'r') as f:
+                        first_line = f.readline().strip()
+                        line = first_line.split(' ')
                         try:
-                            os.makedirs(syms_path)
-                        except OSError:
-                            pass
-                    except:
-                        syms_path = None
+                            syms_path = os.path.join(symbols_out_dir, line[-1], line[3])
+                            try:
+                                os.makedirs(syms_path)
+                            except OSError:
+                                pass
+                        except:
+                            syms_path = None
 
-                if syms_path is not None:
-                    copy2(symbol_out_file, syms_path)
+                    if syms_path is not None:
+                        copy2(symbol_out_file, syms_path)
 
-                os.remove(symbol_out_file)
+                    os.remove(symbol_out_file)
 
         zip_out = os.path.join(session_dir, "result.zip")
         zipf = zipfile.ZipFile(zip_out, 'w', zipfile.ZIP_DEFLATED)

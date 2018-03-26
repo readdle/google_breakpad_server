@@ -2,7 +2,7 @@
 
 This server dump the [symbols](https://github.com/google/breakpad/blob/master/docs/getting_started_with_breakpad.md) for your native libraries, you can read [here](https://github.com/google/breakpad/blob/master/docs/getting_started_with_breakpad.md) how google breakpad works.<br/>
 
-Just send a ziped folder with `.so` files or single `.so` file as form data.
+Just send a ziped folder(you can include multiple ABIs - server look recurcively for `.so` files), with `.so` files or single `.so` file as form data.
 
 
 ### Dependencies
@@ -35,26 +35,44 @@ Starting server on port 4000
 Started httpserver on port  8003
 
 # Browse a zipped structure
-> unzip -l libs.zip
-Archive:  libs.zip
+> unzip -l jniLibs.zip
+Archive:  jniLibs.zip
+ unzip -l jniLibs.zip
+Archive:  jniLibs.zip
   Length      Date    Time    Name
 ---------  ---------- -----   ----
- 14166556  03-23-2018 19:44   libFoundation.so
-    25664  03-23-2018 19:44   libswiftGlibc.so
-  2045828  03-23-2018 19:44   libscui18n.so
-  1418788  03-23-2018 19:44   libscuuc.so
-   949372  03-23-2018 19:44   libdispatch.so
- 25911876  03-23-2018 19:44   libscudata.so
-   501716  03-23-2018 19:44   libXCTest.so
-  8896748  03-23-2018 19:44   libswiftCore.so
-  3982184  03-23-2018 19:44   libSampleAppCore.so
-   683776  03-23-2018 19:44   libswiftSwiftOnoneSupport.so
-   132636  03-23-2018 19:44   libbreakpad.so
-  2294932  03-23-2018 19:44   libxml2.so
-   661056  03-23-2018 19:44   libc++_shared.so
-  2321548  03-23-2018 19:44   libcurl.so
----------                     -------
- 63992680                     14 files
+        0  03-26-2018 16:59   jniLibs/
+        0  03-26-2018 12:46   jniLibs/armeabi-v7a/
+ 14166556  03-26-2018 15:10   jniLibs/armeabi-v7a/libFoundation.so
+    25664  03-26-2018 15:10   jniLibs/armeabi-v7a/libswiftGlibc.so
+  2045828  03-26-2018 15:10   jniLibs/armeabi-v7a/libscui18n.so
+  1418788  03-26-2018 15:10   jniLibs/armeabi-v7a/libscuuc.so
+     6148  03-26-2018 12:47   jniLibs/armeabi-v7a/.DS_Store
+   949372  03-26-2018 15:10   jniLibs/armeabi-v7a/libdispatch.so
+ 25911876  03-26-2018 15:10   jniLibs/armeabi-v7a/libscudata.so
+   501716  03-26-2018 15:10   jniLibs/armeabi-v7a/libXCTest.so
+  8896748  03-26-2018 15:10   jniLibs/armeabi-v7a/libswiftCore.so
+  3983508  03-26-2018 15:10   jniLibs/armeabi-v7a/libSampleAppCore.so
+   683776  03-26-2018 15:10   jniLibs/armeabi-v7a/libswiftSwiftOnoneSupport.so
+   132636  03-26-2018 15:10   jniLibs/armeabi-v7a/libbreakpad.so
+  2294932  03-26-2018 15:10   jniLibs/armeabi-v7a/libxml2.so
+   661056  03-26-2018 15:10   jniLibs/armeabi-v7a/libc++_shared.so
+  2321548  03-26-2018 15:10   jniLibs/armeabi-v7a/libcurl.so
+        0  03-26-2018 12:46   jniLibs/x86/
+ 14166556  03-26-2018 15:10   jniLibs/x86/libFoundation.so
+    25664  03-26-2018 15:10   jniLibs/x86/libswiftGlibc.so
+  2045828  03-26-2018 15:10   jniLibs/x86/libscui18n.so
+  1418788  03-26-2018 15:10   jniLibs/x86/libscuuc.so
+   949372  03-26-2018 15:10   jniLibs/x86/libdispatch.so
+ 25911876  03-26-2018 15:10   jniLibs/x86/libscudata.so
+   501716  03-26-2018 15:10   jniLibs/x86/libXCTest.so
+  8896748  03-26-2018 15:10   jniLibs/x86/libswiftCore.so
+  3983508  03-26-2018 15:10   jniLibs/x86/libSampleAppCore.so
+   683776  03-26-2018 15:10   jniLibs/x86/libswiftSwiftOnoneSupport.so
+   132636  03-26-2018 15:10   jniLibs/x86/libbreakpad.so
+  2294932  03-26-2018 15:10   jniLibs/x86/libxml2.so
+   661056  03-26-2018 15:10   jniLibs/x86/libc++_shared.so
+  2321548  03-26-2018 15:10   jniLibs/x86/libcurl.so
 
 # Send libs
 > curl --form file=@libs.zip http://localhost:8001/dump_syms -o symbols.zip
