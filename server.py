@@ -1,3 +1,6 @@
+
+import sys
+
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 
 from shutil import copy2
@@ -11,7 +14,8 @@ import uuid
 import mimetypes as memetypes
 import shutil
 
-PORT = 8002
+
+PORT = int(sys.argv[1])
 
 
 class StoreHandler(BaseHTTPRequestHandler):
