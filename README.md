@@ -40,8 +40,6 @@ Started httpserver on port  8003
 # Browse a zipped structure
 > unzip -l jniLibs.zip
 Archive:  jniLibs.zip
- unzip -l jniLibs.zip
-Archive:  jniLibs.zip
   Length      Date    Time    Name
 ---------  ---------- -----   ----
         0  03-26-2018 16:59   jniLibs/
@@ -78,7 +76,7 @@ Archive:  jniLibs.zip
   2321548  03-26-2018 15:10   jniLibs/x86/libcurl.so
 
 # Send libs
-> curl --form file=@libs.zip http://localhost:8001/dump_syms -o symbols.zip
+> curl --form file=@libs.zip http://localhost:8003/dump_syms -o symbols.zip
 
 # Browse result
 > unzip -l symbols.zip
