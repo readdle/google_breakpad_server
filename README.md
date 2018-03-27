@@ -2,8 +2,10 @@
 
 This server dump the [symbols](https://github.com/google/breakpad/blob/master/docs/getting_started_with_breakpad.md) for your native libraries, you can read [here](https://github.com/google/breakpad/blob/master/docs/getting_started_with_breakpad.md) how google breakpad works.<br/>
 
-Just send a ziped folder(you can include multiple ABIs - server look recurcively for `.so` files), with `.so` files or single `.so` file as form data.
+Just send a ziped folder(you can include multiple ABIs - server look recurcively for `.so` files) with `.so` files or a single `.so` file as form data.
 
+### Why?
+`dump_syms` works only on Linux 😐, so you can easily run ./build_and_run_docker.sh script which builds & runs docker with a server, take a look at [Docker](#docker) section.
 
 ### Dependencies
 * [Google breakpad(`dump_syms`)](https://chromium.googlesource.com/breakpad/breakpad)
@@ -11,8 +13,9 @@ Just send a ziped folder(you can include multiple ABIs - server look recurcively
 
 *Note: google breakpad `dump_syms` works only on Linux*
 
+
 ### Docker
-This repo contains docker file, so you need just run `./build_and_run_docker.sh` script which builds a container && start the container with server on **port 4000**
+This repo contains `Dockerfile` inside docker folder, so you need just run `./build_and_run_docker.sh` script which builds a container && start the container with server on **port 4000**
 
 ```
 >> ./build_and_run_docker.sh
