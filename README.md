@@ -2,7 +2,20 @@
 
 This server dump the [symbols](https://github.com/google/breakpad/blob/master/docs/getting_started_with_breakpad.md) for your native libraries, you can read [here](https://github.com/google/breakpad/blob/master/docs/getting_started_with_breakpad.md) how google breakpad works.<br/>
 
-Just send a ziped folder(you can include multiple ABIs - server look recurcively for `.so` files) with `.so` files or a single `.so` file as form data.
+Just send a ziped folder(you can include multiple ABIs - server look recursively for `.so` files) with `.so` files or a single `.so` file as form data and receive back a `.zip` archive with symbols.
+
+```
+> curl --form file=@jniLibs.zip http://localhost:8003/dump_syms -o symbols.zip
+> unzip -l symbols.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+   185049  03-26-2018 10:19   symbols/libswiftSwiftOnoneSupport.so/92F5363BC1E6D6D044F82EDE14811DD20/libswiftSwiftOnoneSupport.so.sym
+  2052099  03-26-2018 10:19   symbols/libFoundation.so/57D9582878DC08D5992E51407B7954F20/libFoundation.so.sym
+  2011646  03-26-2018 10:19   symbols/libswiftCore.so/5C2A2448F04AA9D69DF6CB2DDC6CDB420/libswiftCore.so.sym
+    85843  03-26-2018 10:19   symbols/libXCTest.so/0FAA4F99F240783EA0192E56074B82F50/libXCTest.so.sym
+```
+
+
 
 ### Why?
 `dump_syms` works only on Linux 😐, so you can easily run ./build_and_run_docker.sh script which builds & runs docker with a server, take a look at [Docker](#docker) section.
