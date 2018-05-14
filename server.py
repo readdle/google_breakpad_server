@@ -109,6 +109,7 @@ class StoreHandler(BaseHTTPRequestHandler):
         zipf.close()
 
         self.respond_file(zip_out)
+        shutil.rmtree(session_dir)  # Remove current session dir
 
     def do_POST(self):
         if self.path == '/dump_syms':
