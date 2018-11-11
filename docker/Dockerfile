@@ -31,6 +31,7 @@ ADD . /app
 
 # Install app
 RUN git clone https://github.com/albertaleksieiev/google_breakpad_server
+RUN cd google_breakpad_server && git pull
 
 # Run app.py when the container launches
 CMD ["python", "google_breakpad_server/server.py","8003"]
