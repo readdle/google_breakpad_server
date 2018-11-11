@@ -30,7 +30,7 @@ ADD . /app
 
 
 # Install app
-RUN git clone https://github.com/albertaleksieiev/google_breakpad_server
+RUN git clone https://github.com/readdle/google_breakpad_server
 RUN cd google_breakpad_server && git pull
 
 # Run app.py when the container launches
