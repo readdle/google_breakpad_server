@@ -7,5 +7,5 @@ docker build ./docker -t crashserver
 
 
 echo "Starting server on port ${PORT}"
-docker run -d -p ${PORT}:8003 crashserver
+docker run --restart=always -d -p ${PORT}:8003 crashserver
 
